@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>The Dice Game</title>
+    <link rel="stylesheet" href="css/style.css">
+      <link rel="icon" href="css/favicon.ico">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Acme&family=Berkshire+Swash&family=Gochi+Hand&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <h1 id="winnername">Click To Play!!</h1>
+    <table>
+
+
+      <tr>
+        <td class="playernames" id="player1name">Player 1</td>
+        <td class="playernames" id="player2name">Player 2</td>
+      </tr>
+      <tr class="dices">
+        <td><img src="images/6.png" alt="6 on dice" class="dicepics" id="diceimage1"></td>
+
+          <td><img src="images/6.png" alt="6 on dice" class="dicepics" id="diceimage2"></td>
+      </tr>
+    </table>
+  <center>
+     <button type="button" name="button" class="btn btn-outline-dark" onclick="diceRoll() ">Click Me</button>
+    </center>
+<script type="text/javascript">
+var name1;
+var len;
+  var check=true;
+  while (check) {
+      name1 = prompt("Enter Player 1 Name.(15 Max Length)");
+      len=name1.length;
+    if(len<16 && len>0)
+    check=false;
+    else {
+      alert("Invalid Name "+name1.length);
+    }
+  }
+  name1=name1.slice(0,1).toUpperCase() + name1.slice(1,name1.length).toLowerCase();
+  document.querySelector("#player1name").innerHTML=name1;
+  var name2;
+  check=true;
+
+  while (check) {
+    name2 = prompt("Enter Player 2 Name.(15 Max Length)");
+    len=name2.length;
+    if(len<16 && len>0)
+    check=false;
+    else {
+      alert("Invalid Name")
+    }
+  }
+  name2=name2.slice(0,1).toUpperCase() + name2.slice(1,name2.length).toLowerCase();
+  document.querySelector("#player2name").innerHTML=name2;
+
+function diceRoll() {
+  var dice1r=Math.random()*6;
+  dice1r=Math.floor(dice1r) +1;
+  var dice2r=Math.random()*6;
+  dice2r=Math.floor(dice2r) +1;
+  var dice1img="images/"+dice1r+".png";
+  var dice2img="images/"+dice2r+".png";
+  document.querySelector("#diceimage1").setAttribute("src",dice1img);
+  document.querySelector("#diceimage2").setAttribute("src",dice2img);
+  if(dice1r>dice2r)
+  {
+    document.querySelector("#winnername").innerHTML= "<img src='images/victoryflag.png' alt='flag' style='width:4%;'> "+name1+" wins!";
+  }
+  else if(dice2r>dice1r)
+  {
+    document.querySelector("#winnername").innerHTML= name2+" wins! <img src='images/victoryflag.png' alt='flag' style='width:4%;'>";
+  }
+  else {
+    document.querySelector("#winnername").innerHTML= "Draw";
+  }
+}
+
+</script>
+  </body>
+</html>
